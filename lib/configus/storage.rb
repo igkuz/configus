@@ -6,7 +6,7 @@ module Configus
 		  hash.each do |k, v|
         singleton_class.class_eval do
           result = if v.instance_of? Hash
-            ConfigusConfig.new v
+            Storage.new v
           else
             v
           end
