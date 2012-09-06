@@ -10,7 +10,7 @@ module Configus
 
 	  def self.build(&block)
 		  b = Builder.new(&block)
-      b.result
+      b.config
 	  end
 
 	  def env(name, &block)
