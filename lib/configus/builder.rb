@@ -1,6 +1,5 @@
 
 module Configus
-	autoload :Proxy, 'proxy'
 
   class Builder
 
