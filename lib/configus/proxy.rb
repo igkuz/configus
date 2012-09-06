@@ -10,11 +10,16 @@ module Configus
 	  def self.build(&block)
 			p = Proxy.new(&block)
 		  p.hash
-	  end
+		end
 
-	  def method_missing(name, *args, &block)
-		  @hash[name] = args[0]
-	  end
+		def method_missing(name, *args, &block)
+			if (block.is_a? Proc) && args.empty?
+				@hash[name] = Proxy.build(&block)
+			else
+				@hash[name] = args[0]
+			end
+
+		end
 
 		def hash
 			@hash

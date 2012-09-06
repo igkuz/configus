@@ -21,7 +21,7 @@ describe Configus::Builder do
 		@hash = Configus::Builder.build(&block)
 	end
 
-	it "should work" do
+	it "should build hash for nested blocks" do
 		@hash.should == {
 			:production => {
 					:website_url => "http://example.com",
