@@ -22,6 +22,7 @@ describe Configus::Storage do
 		}
 		config = Configus::Storage.new(hash)
 		config.a.b.c.should == "d"
+		lambda {config.a.c}.should raise_error
 	end
 
 end
