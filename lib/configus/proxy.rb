@@ -13,7 +13,7 @@ module Configus
 		end
 
 		def method_missing(name, *args, &block)
-			if (block.is_a? Proc) && args.empty?
+			if args.empty? && block_given?
 				@hash[name] = Proxy.build(&block)
 			else
 				@hash[name] = args[0]
