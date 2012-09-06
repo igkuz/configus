@@ -1,9 +1,9 @@
 require "spec_helper"
 
-describe Configus::ConfigusConfig do
+describe Configus::Storage do
 
 	it "should be initialised" do
-		config = Configus::ConfigusConfig.new :a => "b"
+		config = Configus::Storage.new :a => "b"
 		config.a.should == "b"
 	end
 

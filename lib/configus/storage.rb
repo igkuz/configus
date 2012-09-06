@@ -1,6 +1,6 @@
 module Configus
 
-  class ConfigusConfig
+  class Storage
 
 	  def initialize(hash)
 		  hash.each do |k, v|
