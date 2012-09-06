@@ -7,4 +7,9 @@ describe Configus::Storage do
 		config.a.should == "b"
 	end
 
+	it "should eat nested hashes" do
+		config = Configus::Storage.new :a => {d: "b"}
+		config.a.d.should == "b"
+	end
+
 end
