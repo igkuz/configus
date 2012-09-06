@@ -6,11 +6,11 @@ require 'configus/version'
 Gem::Specification.new do |gem|
   gem.name          = "configus"
   gem.version       = Configus::VERSION
-  gem.authors       = ["Igor Kuznetsov"]
-  gem.email         = ["igkuznetsov@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.authors       = ["Igor Kuznetsov", "Kirill Andreev"]
+  gem.email         = ["igkuznetsov@gmail.com", "hindmost.one@gmail.com"]
+  gem.description   = %q{Simple configuration builder}
+  gem.summary       = %q{Builds configuration}
+  gem.homepage      = "http://www.example.com"
 
   gem.add_development_dependency 'rspec'
 
