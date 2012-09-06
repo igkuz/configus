@@ -4,6 +4,7 @@ module Configus
   class Builder
 
 	  def initialize(&block)
+		  @envs = {}
 			instance_eval(&block)
 	  end
 
@@ -13,12 +14,11 @@ module Configus
 	  end
 
 	  def env(name, &block)
-      print "calling Proxy.build(&block)...\n"
-		  @p = Proxy.build(&block)
-	  end
+			@envs[name] = Proxy.build(&block)
+		end
 
-    def result
-      @p
+    def config
+      @envs
     end
   end
 

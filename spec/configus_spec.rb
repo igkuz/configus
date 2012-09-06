@@ -20,4 +20,20 @@ describe Configus do
     configus.address.should == "example.com"
     configus.test_symbol.should == :test
   end
+
+	it "should work with nesting" do
+		configus = Configus.build :production do
+			env :production do
+				port do
+					first_byte 8
+				end
+				timeout 300
+				address "example.com"
+				test_symbol :test
+			end
+		end
+
+		configus.port.first_byte.should == 8
+	end
+
 end
