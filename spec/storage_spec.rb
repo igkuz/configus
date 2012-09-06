@@ -12,4 +12,16 @@ describe Configus::Storage do
 		config.a.d.should == "b"
 	end
 
+	it "should be initialised by nested nested ... hashes" do
+		hash  = {
+				:a => {
+						:b => {
+								:c => "d"
+						}
+				}
+		}
+		config = Configus::Storage.new(hash)
+		config.a.b.c.should == "d"
+	end
+
 end
