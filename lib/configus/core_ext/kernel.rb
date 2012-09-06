@@ -1,5 +1,5 @@
-#module Kernel
-#	def configus
-#		Configus.config
-#	end
-#end
+module Kernel
+	def configus
+		Configus.config
+	end
+end

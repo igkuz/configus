@@ -10,6 +10,11 @@ module Configus
 	end
 
   def self.build(environment, &block)
-    attrs = Builder.build(&block)
+    @attrs = Builder.build(&block)
   end
+
+	def self.config
+		@attrs
+	end
+
 end
