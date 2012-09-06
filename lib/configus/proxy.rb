@@ -2,13 +2,16 @@ module Configus
 
   class Proxy
 
-	  def initialize
+	  def initialize(&block)
 		  self.singleton_class.class_eval do
 			  def method_missing(name, *args, &block)
-					raise name.inspect
-			  end
-		  end
+					self.class.send(:define_method, name) do
+            return args[0]
+          end
+        end
 
+      end
+      instance_eval(&block)
 	  end
 
 	  def self.build(&block)

@@ -9,12 +9,17 @@ module Configus
 
 	  def self.build(&block)
 		  b = Builder.new(&block)
+      b.result
 	  end
 
 	  def env(name, &block)
-		  p = Proxy.build(&block)
+      print "calling Proxy.build(&block)...\n"
+		  @p = Proxy.build(&block)
 	  end
 
+    def result
+      @p
+    end
   end
 
 end
