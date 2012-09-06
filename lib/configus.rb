@@ -8,11 +8,7 @@ module Configus
 		"Configus version #{Configus::VERSION}"
 	end
 
-  def self.build name
-    storage = ConfigusStorage.new
-
-    storage.instance_eval do
-      yield
-    end
+  def self.build(environment, &block)
+    attrs = Builder.build(&block)
   end
 end
