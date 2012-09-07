@@ -15,10 +15,10 @@ describe Configus do
       end
     end
 
-    configus.port.should == 80
-    configus.timeout.should == 300
-    configus.address.should == "example.com"
-    configus.test_symbol.should == :test
+    configus.production.port.should == 80
+    configus.production.timeout.should == 300
+    configus.production.address.should == "example.com"
+    configus.production.test_symbol.should == :test
   end
 
 	it "should work with nesting" do
@@ -33,7 +33,7 @@ describe Configus do
 			end
 		end
 
-		configus.port.first_byte.should == 8
+		configus.production.port.first_byte.should == 8
 	end
 
 end

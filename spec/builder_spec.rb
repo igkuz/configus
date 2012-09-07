@@ -26,7 +26,7 @@ describe Configus::Builder do
 					end
 				end
 			end
-		end
+  	end
 		@hash = Configus::Builder.build(&block)
 		p @hash
 	end
@@ -45,7 +45,20 @@ describe Configus::Builder do
 							:port => 25
 						}
 					}
-			}
+			},
+      :development => {
+            :website_url=> "http://text.example.com",
+            :email=> {
+                :pop=>{
+                    :address=>"pop.example.com",
+                    :port=>110
+                },
+                :smtp=>{
+                    :address=> 'smpt.text.example.com',
+                    :port=>25
+                }
+            }
+      }
 		}
 	end
 
