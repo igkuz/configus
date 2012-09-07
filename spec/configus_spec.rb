@@ -15,10 +15,10 @@ describe Configus do
       end
     end
 
-    configus.production.port.should == 80
-    configus.production.timeout.should == 300
-    configus.production.address.should == "example.com"
-    configus.production.test_symbol.should == :test
+    configus.port.should == 80
+    configus.timeout.should == 300
+    configus.address.should == "example.com"
+    configus.test_symbol.should == :test
   end
 
 	it "should work with nesting" do
@@ -33,7 +33,7 @@ describe Configus do
 			end
 		end
 
-		configus.production.port.first_byte.should == 8
+		configus.port.first_byte.should == 8
 	end
 
 	it "should work with inheritance" do
@@ -53,8 +53,30 @@ describe Configus do
 
 		end
 
-			configus.development.address.should == "example.com"
-			configus.production.timeout.should == 300
-	end
+			configus.address.should == "example.com"
+			configus.timeout.should == 300
+      configus.port.first_byte.should == 8
+      configus.keys.should == [:port, :timeout, :address, :test_symbol]
+  end
+
+  it "should raise KeyNotFoundException on unknown key" do
+    Configus.build :prod do
+      env :prod do
+        mail "test@test.fr"
+      end
+    end
+
+    lambda { configus.mial }.should raise_error(Configus::Storage::KeyNotFoundException)
+  end
+
+  it "should work like normal hash" do
+    Configus.build :prod do
+      env :prod do
+        mail "test@test.fr"
+      end
+    end
+
+    configus[:mail].should == "test@test.fr"
+  end
 
 end

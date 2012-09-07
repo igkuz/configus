@@ -23,6 +23,20 @@ describe Configus::Storage do
 		config = Configus::Storage.new(hash)
 		config.a.b.c.should == "d"
 		lambda {config.a.c}.should raise_error
-	end
+  end
+
+  it "should give out source hash" do
+    hash  = {
+        :a => {
+            :b => {
+                :c => "d"
+            }
+        }
+    }
+
+    config = Configus::Storage.new(hash)
+
+    config.to_hash.should == hash
+  end
 
 end

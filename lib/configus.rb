@@ -13,7 +13,7 @@ module Configus
 
   def self.build(environment, &block)
     @attrs = Builder.build(&block)
-    @storage = Storage.new @attrs
+    @storage = Storage.new @attrs[environment]
   end
 
   def self.config
