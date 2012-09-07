@@ -3,7 +3,7 @@ class Hash
   def merge_recursive! h2
     me = self
     h2.each do |k, v|
-      if v.is_a? Hash
+      if v.is_a? Hash and me[k].is_a? Hash
         me[k] = me[k].merge_recursive v
       else
         me[k] = v

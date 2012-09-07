@@ -21,6 +21,7 @@ describe Configus::Builder do
 			env :development, :parent => :production do
 				website_url 'http://text.example.com'
 				email do
+          pop "new_value"
 					smtp do
 						address 'smpt.text.example.com'
 					end
@@ -48,10 +49,7 @@ describe Configus::Builder do
       :development => {
             :website_url=> "http://text.example.com",
             :email=> {
-                :pop=>{
-                    :address=>"pop.example.com",
-                    :port=>110
-                },
+                :pop=> "new_value",
                 :smtp=>{
                     :address=> 'smpt.text.example.com',
                     :port=>25
