@@ -28,7 +28,6 @@ describe Configus::Builder do
 			end
   	end
 		@hash = Configus::Builder.build(&block)
-		p @hash
 	end
 
 	it "should build hash for nested blocks" do
