@@ -7,13 +7,20 @@ module Configus
   autoload :Storage, 'configus/storage'
   autoload :Proxy, 'configus/proxy'
 
+  class EnvironNotFound < RuntimeError
+  end
+
 	def self.version_string
 		"Configus version #{Configus::VERSION}"
 	end
 
   def self.build(environment, &block)
     @attrs = Builder.build(&block)
-    @storage = Storage.new @attrs[environment]
+    if @attrs.has_key? environment
+      @storage = Storage.new @attrs[environment]
+    else
+      raise EnvironNotFound
+    end
   end
 
   def self.config

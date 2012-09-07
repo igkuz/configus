@@ -2,6 +2,9 @@ module Configus
 
   class Builder
 
+    class ParentEnvironNotFound < EnvironNotFound
+    end
+
 	  def initialize(&block)
 		  @envs = {}
 			instance_eval(&block)
@@ -15,6 +18,7 @@ module Configus
 	  def env(name, hash = {}, &block)
 			@envs[name] = Proxy.build(&block)
       if !hash.empty?
+        raise ParentEnvironNotFound unless @envs.has_key? name
         accum = @envs[hash[:parent]]
         @envs[name] = accum.merge_recursive @envs[name]
       else
