@@ -1,5 +1,6 @@
 require "configus/version"
 require 'configus/core_ext/hash'
+require 'configus/core_ext/kernel'
 
 module Configus
   autoload :Builder, 'configus/builder'
@@ -12,10 +13,10 @@ module Configus
 
   def self.build(environment, &block)
     @attrs = Builder.build(&block)
-    Storage.new @attrs
+    @storage = Storage.new @attrs
   end
 
   def self.config
-    @attrs
+    @storage
   end
 end

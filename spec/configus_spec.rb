@@ -6,7 +6,7 @@ describe Configus do
   end
 
   it "should work as key-value storage" do
-    configus = Configus.build :production do
+    Configus.build :production do
       env :production do
         port 80
         timeout 300
@@ -22,7 +22,7 @@ describe Configus do
   end
 
 	it "should work with nesting" do
-		configus = Configus.build :production do
+		Configus.build :production do
 			env :production do
 				port do
 					first_byte 8
@@ -34,6 +34,27 @@ describe Configus do
 		end
 
 		configus.production.port.first_byte.should == 8
+	end
+
+	it "should work with inheritance" do
+		Configus.build :production do
+			env :production do
+				port do
+					first_byte 8
+				end
+				timeout 300
+				address "example.com"
+				test_symbol :test
+			end
+
+			env :development, :parent => :production do
+				timeout 4000
+			end
+
+		end
+
+			configus.development.address.should == "example.com"
+			configus.production.timeout.should == 300
 	end
 
 end
