@@ -37,7 +37,7 @@ describe Configus do
 	end
 
 	it "should work with inheritance" do
-		Configus.build :production do
+		Configus.build :test do
 			env :production do
 				port do
 					first_byte 8
@@ -51,10 +51,14 @@ describe Configus do
 				timeout 4000
 			end
 
+			env :test, :parent => :development do
+				address "testCom"
+			end
+
 		end
 
-			configus.address.should == "example.com"
-			configus.timeout.should == 300
+			configus.address.should == "testCom"
+			configus.timeout.should == 4000
       configus.port.first_byte.should == 8
       configus.keys.should == [:port, :timeout, :address, :test_symbol]
   end
