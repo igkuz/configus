@@ -15,12 +15,8 @@ module Configus
 	end
 
   def self.build(environment, &block)
-    @attrs = Builder.build(&block)
-    if @attrs.has_key? environment
-      @storage = Storage.new @attrs[environment]
-    else
-      raise EnvironNotFound
-    end
+    @attrs = Builder.build(environment, &block)
+    @storage = Storage.new @attrs[environment]
   end
 
   def self.config

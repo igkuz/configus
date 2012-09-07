@@ -10,14 +10,17 @@ module Configus
 			instance_eval(&block)
 	  end
 
-	  def self.build(&block)
-		  b = Builder.new(&block)
-      b.config
+	  def self.build(name, &block)
+		  config = Builder.new(&block).config
+
+      raise EnvironNotFound unless config.has_key? name
+
+      config
 	  end
 
 	  def env(name, hash = {}, &block)
-			@envs[name] = Proxy.build(&block)
-      if !hash.empty?
+      @envs[name] = Proxy.build(&block)
+      if hash.any?
         raise ParentEnvironNotFound unless @envs.has_key? name
         accum = @envs[hash[:parent]]
         @envs[name] = accum.deep_merge @envs[name]

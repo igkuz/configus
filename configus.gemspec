@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://www.example.com"
 
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'active_support'
+  gem.add_runtime_dependency 'active_support'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
