@@ -14,16 +14,12 @@ module Configus
 
 	  def env(name, hash = {}, &block)
 			@envs[name] = Proxy.build(&block)
-      result = if !hash.empty?
-        accum = @envs[hash[:parent]].dup
-
+      if !hash.empty?
+        accum = @envs[hash[:parent]]
         @envs[name] = accum.merge_recursive @envs[name]
       else
         @envs[name]
       end
-
-      result.freeze
-      print "parent hash is #{@envs[hash[:parent]]}\n"
 		end
 
     def config
