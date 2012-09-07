@@ -17,8 +17,18 @@ describe Configus::Builder do
 					end
 				end
 			end
+
+			env :development, :parent => :production do
+				website_url 'http://text.example.com'
+				email do
+					smtp do
+						address 'smpt.text.example.com'
+					end
+				end
+			end
 		end
 		@hash = Configus::Builder.build(&block)
+		p @hash
 	end
 
 	it "should build hash for nested blocks" do
