@@ -1,6 +1,6 @@
 require "configus/version"
-require 'configus/core_ext/hash'
 require 'configus/core_ext/kernel'
+require 'active_support/core_ext/hash'
 
 module Configus
   autoload :Builder, 'configus/builder'

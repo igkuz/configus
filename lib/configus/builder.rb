@@ -20,7 +20,7 @@ module Configus
       if !hash.empty?
         raise ParentEnvironNotFound unless @envs.has_key? name
         accum = @envs[hash[:parent]]
-        @envs[name] = accum.merge_recursive @envs[name]
+        @envs[name] = accum.deep_merge @envs[name]
       else
         @envs[name]
       end
